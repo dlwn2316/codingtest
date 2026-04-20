@@ -1,0 +1,21 @@
+# 큐 자료구조
+# 선입선출, 터널과 같은 형태, 먼저 들어온 데이터가 먼저 처리되는 대기열
+# 덱(deque) 라이브러리 사용
+
+from collections import deque
+
+# 큐 구현을 위해 덱 라이브러리 사용
+queue = deque()
+
+queue.append(5)
+queue.append(2)
+queue.append(3)
+queue.append(7)
+queue.popleft() # 가장 먼저 들어온 데이터 삭제
+queue.append(1)
+queue.append(4)
+queue.popleft()
+
+print(queue) # 들어온 순서대로 출력, 오른쪽에서 들어와서 왼쪽으로 나가는
+queue.reverse() # 역순으로
+print(queue) 
