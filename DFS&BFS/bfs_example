@@ -1,0 +1,59 @@
+# 미로 탈출 문제(BFS)
+# n*m 크기 직사각형 미로에서괼괴물을 피해 탈출
+# (1,1) 위치해 있으며 한번에 한칸씩 이동
+# 괴물 있는 부분0, 없는 부분1 
+# 탈출하기 위해 움직여야하는 최소 칸의 개수?
+
+# 입력
+# 첫번째 줄: n m (정수로)
+# 두번째 줄부터 2차원 배열 형태
+
+# (1,1)에서 시작해서 값이 1인 지점으로만 방문 처리
+# 매번 방문시 처음 노드와의 거리를 +1로 기록
+
+from collections import deque
+
+def bfs(x,y):
+    # 큐 구현을 위해 덱 라이브러리 사용
+    queue = deque()
+    # x,y로 이루어진 튜플 데이터 담기
+    queue.append((x,y))
+    
+    while queue:
+        x,y = queue.popleft()
+        # 현재 위치에서 4가지 방향으로 위치 확인
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            # 공간을 벗어난 경우 무시
+            if nx < 0 or nx >= n or ny < 0 or ny >= m:
+                continue
+            # 괴물이 있는 경우 무시
+            if graph[nx][ny]==0:
+                continue
+            # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
+            if graph[nx][ny]==1:
+                # 직전 노드 위치(graph[x][y])에서 최단 거리 값에 1을 더한 값을 넣어줌
+                # 다음 방문 위치는 거리까지는 1만큼 더 멀기 때문
+                graph[nx][ny] = graph[x][y] + 1
+                queue.append((nx,ny))
+                
+    # 가장 오른쪽 아래까지 최단 거리를 반환            
+    return graph[n-1][m-1]
+
+
+
+# n,k을 공백 기준 구분하여 입력 받기
+n, m = map(int, input().split())
+# 2차원 리스트 맵 정보 입력 받기
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
+    
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
+
+# 이동 칸의 개수
+print(bfs(0,0))
+# 이동수횟수
+print(bfs(0,0) - 1)
