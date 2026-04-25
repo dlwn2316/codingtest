@@ -8,5 +8,5 @@ from bisect import bisect_left, bisect_right
 a = [1,2,4,4,8]
 x = 4
 
-print(bisect_left(a,x)) # 인덱스 값이 아니라 자동으로 몇번째 위치를 불러오는 듯
+print(bisect_left(a,x)) 
 print(bisect_right(a,x))
