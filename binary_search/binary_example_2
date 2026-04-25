@@ -1,0 +1,24 @@
+# n개 원소를 포함하는 수열이 오름차순으로 정렬
+# 수열에서 x가 등장하는 횟수 계산
+
+# 입력:
+# n x (정수) : 7 2
+# n개 원소 : 1 1 2 2 2 2 3 
+
+import bisect from bisect_right, bisect_left 
+# 값이 [left_value, right_value]인 데이터의 개수를 반환하는 함수
+def count_by_array(array, left_value, right_value):
+    left_index = bisect_left(array, left_value)
+    right_idex = bisect_right(array, right_value)
+    return right_index - left_index
+
+n, x = list(map(int, input().split()))
+array = list(map(int, input().split()))
+
+# 값이 [x,x] 인 데이터의 개수 반환 
+count = count_by_array(array, x, x)
+
+if count == 0:
+    print(-1)
+else:
+    print(count)
