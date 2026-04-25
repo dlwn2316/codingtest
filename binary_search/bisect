@@ -1,0 +1,12 @@
+# 파이썬 이진탐색 라이브러리
+# bisect_left(a,x) : 정렬된 리스트 a에 x 라는 원소를 삽입할 왼쪽 인덱스 반환
+# bisect_right(a,x): 정렬된 리스트 a에 x 라는 원소를 삽입할 오른쪽 인덱스 반환
+
+# 라이브러리 
+from bisect import bisect_left, bisect_right
+
+a = [1,2,4,4,8]
+x = 4
+
+print(bisect_left(a,x)) # 인덱스 값이 아니라 자동으로 몇번째 위치를 불러오는 듯
+print(bisect_right(a,x))
